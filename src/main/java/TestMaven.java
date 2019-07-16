@@ -10,6 +10,7 @@ import java.util.Properties;
 
 /**
  * Create class TestMaven to check the work of the Maven.
+ *
  * @author Shakhov Yevhen.
  */
 public class TestMaven {
@@ -33,13 +34,13 @@ public class TestMaven {
         Implement the loading of settings at system startup. And output in console option values.
          */
         Properties prop = new Properties();   //обьект настроек
-        try(InputStream resourceAsStream = TestMaven.class.getClassLoader()  //лоадер текущего класса
-            .getResourceAsStream("config.properties")){          //получения йайла настроек
+        try (InputStream resourceAsStream = TestMaven.class.getClassLoader()  //лоадер текущего класса
+                .getResourceAsStream("config.properties")) {          //получения йайла настроек
             prop.load(Objects.requireNonNull(resourceAsStream));       //загрузка настроек из файла
         } catch (IOException e) {
-            System.err.println("Unable to load properties file: "+"config.properties");
+            System.err.println("Unable to load properties file: " + "config.properties");
         }
-        prop.get("props.local.hello");
-        prop.get("props.mvn.hello");
+        System.out.println(prop.get("props.local.hello"));
+        System.out.println(prop.get("props.mvn.hello"));
     }
 }
